@@ -1,11 +1,16 @@
 package org.tomaszkowalczyk94.simplesearch.parser;
 
-import org.tomaszkowalczyk94.simplesearch.seachengine.Word;
+import org.tomaszkowalczyk94.simplesearch.memory.Word;
 
 class WordImpl implements Word {
     private final String word;
 
-    public WordImpl(String word) {
+    WordImpl(String word) {
         this.word = word;
+    }
+
+    @Override
+    public String toString() {
+        return word;
     }
 }

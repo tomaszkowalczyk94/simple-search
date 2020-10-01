@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.tomaszkowalczyk94.simplesearch.TestsUtil;
 import org.tomaszkowalczyk94.simplesearch.memory.Memory;
 import org.tomaszkowalczyk94.simplesearch.memory.Searchable;
-import org.tomaszkowalczyk94.simplesearch.seachengine.Word;
+import org.tomaszkowalczyk94.simplesearch.memory.Word;
 
 import java.io.File;
 import java.util.List;
@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DirParserTest {
 
-    List<String> filenamesInTestDir = List.of(
+    private List<String> filenamesInTestDir = List.of(
             "test1.txt",
             "Intel(R) QSFP+ Configuration Utility Release Notes.txt",
             "child dir/8mb file.txt",
@@ -39,19 +39,19 @@ class DirParserTest {
         filenamesInTestDir.forEach(name -> {
             assertTrue(output.containsKey(name));
 
-            Searchable searchable = output.get(output);
+            Searchable searchable = output.get(name);
             assertEquals(name, searchable.getName());
         });
 
         Searchable test1Searchable = output.get("test1.txt");
 
-        List<String> listOfWords = test1Searchable.getListOfWords()
+        List<String> listOfWords = test1Searchable.getWords()
                 .stream()
                 .map(Word::toString)
                 .collect(Collectors.toList());
 
         assertEquals(List.of(
-                "Lorem", "ipsum", "dolor sit amet", "consectetur", "adipiscing elit"
+                "Lorem", "ipsum", "dolor", "sit", "amet", "consectetur", "adipiscing", "elit"
         ), listOfWords);
 
 

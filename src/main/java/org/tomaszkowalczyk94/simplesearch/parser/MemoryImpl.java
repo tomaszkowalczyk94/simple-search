@@ -1,22 +1,21 @@
-package org.tomaszkowalczyk94.simplesearch.memory;
+package org.tomaszkowalczyk94.simplesearch.parser;
 
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.tomaszkowalczyk94.simplesearch.memory.Memory;
+import org.tomaszkowalczyk94.simplesearch.memory.Searchable;
 
-import java.util.HashMap;
 import java.util.Map;
 
+@AllArgsConstructor
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 class MemoryImpl implements Memory {
 
     Map<String, Searchable> searchableByName;
 
-    public MemoryImpl() {
-        this.searchableByName = new HashMap<>();
-    }
-
     @Override
     public Map<String, Searchable> getSearchables() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return searchableByName;
     }
 }
