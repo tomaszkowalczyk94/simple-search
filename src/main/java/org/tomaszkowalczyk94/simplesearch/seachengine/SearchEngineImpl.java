@@ -17,7 +17,7 @@ class SearchEngineImpl implements SearchEngine{
 
     WordComparator wordComparator;
 
-    private final static double MIN_PERCENT_TO_INCLUDED_IN_RESULTS = 0.1;
+    private static final double MIN_PERCENT_TO_INCLUDED_IN_RESULTS = 0.1;
 
     @Override
     public List<SearchResult> search(List<String> findBy, Memory memory) {
