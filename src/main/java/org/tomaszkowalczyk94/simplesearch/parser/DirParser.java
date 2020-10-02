@@ -24,6 +24,11 @@ class DirParser implements Parser {
 
     @Override
     public Memory parse() {
+
+        if (!directory.exists()) {
+            throw new ParserException("catalog dont exists");
+        }
+
         if (!directory.isDirectory()) {
             throw new ParserException("input file is not directory");
         }
