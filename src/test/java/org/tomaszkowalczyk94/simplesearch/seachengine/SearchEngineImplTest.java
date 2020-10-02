@@ -34,7 +34,7 @@ class SearchEngineImplTest {
 
         SearchResult searchResult = searchResults.get(0);
         assertEquals("testName1", searchResult.getName());
-        assertEquals(100, searchResult.getPercent(), 0.1);
+        assertEquals(1, searchResult.getPercent(), 0.01);
     }
 
     private Memory createStubMemory(List<Searchable> searchables) {

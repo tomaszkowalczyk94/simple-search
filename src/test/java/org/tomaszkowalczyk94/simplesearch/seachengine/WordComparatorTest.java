@@ -13,7 +13,7 @@ class WordComparatorTest {
     private static class InputOfTest {
         String s1;
         String s2;
-        LevelOfSimilarity expectedLevelOfSimilarity;
+        LvlOfSimilarity.Level expectedLevelOfSimilarity;
     }
 
     @Test
@@ -21,26 +21,26 @@ class WordComparatorTest {
 
         //given
         List<InputOfTest> inputs = List.of(
-                new InputOfTest("test123", "test123", LevelOfSimilarity.EXACTLY_THE_SAME),
-                new InputOfTest("tEst123", "Test123", LevelOfSimilarity.EXACTLY_THE_SAME),
-                new InputOfTest("test", "testy", LevelOfSimilarity.MINOR_DIFFERENCE),
-                new InputOfTest("tes", "testy", LevelOfSimilarity.DIFFERENT),
-                new InputOfTest("te", "testy", LevelOfSimilarity.DIFFERENT),
-                new InputOfTest("eweliny", "ewelino", LevelOfSimilarity.MINOR_DIFFERENCE),
-                new InputOfTest("eweliny", "ewelinka", LevelOfSimilarity.MINOR_DIFFERENCE),
-                new InputOfTest("a", "ala", LevelOfSimilarity.DIFFERENT),
-                new InputOfTest("Ewelina", "Jolanta", LevelOfSimilarity.DIFFERENT),
-                new InputOfTest("Ela", "Ola", LevelOfSimilarity.DIFFERENT)
+                new InputOfTest("test123", "test123", LvlOfSimilarity.Level.THE_SAME),
+                new InputOfTest("tEst123", "Test123", LvlOfSimilarity.Level.THE_SAME),
+                new InputOfTest("test", "testy", LvlOfSimilarity.Level.MINOR_DIFFERENCE),
+                new InputOfTest("tes", "testy", LvlOfSimilarity.Level.DIFFERENT),
+                new InputOfTest("te", "testy", LvlOfSimilarity.Level.DIFFERENT),
+                new InputOfTest("eweliny", "ewelino", LvlOfSimilarity.Level.MINOR_DIFFERENCE),
+                new InputOfTest("eweliny", "ewelinka", LvlOfSimilarity.Level.MINOR_DIFFERENCE),
+                new InputOfTest("a", "ala", LvlOfSimilarity.Level.DIFFERENT),
+                new InputOfTest("Ewelina", "Jolanta", LvlOfSimilarity.Level.DIFFERENT),
+                new InputOfTest("Ela", "Ola", LvlOfSimilarity.Level.DIFFERENT)
         );
 
         WordComparator wordComparator = new WordComparator();
 
         inputs.forEach(input -> {
             //when
-            LevelOfSimilarity levelOfSimilarity = wordComparator.countLevelOfSimilarity(input.getS1(), input.getS2());
+            LvlOfSimilarity lvlOfSimilarity = wordComparator.countLevelOfSimilarity(input.getS1(), input.getS2());
 
             //then
-            assertEquals(input.getExpectedLevelOfSimilarity(), levelOfSimilarity, ""+input.getS1()+" "+input.getS2());
+            assertEquals(input.getExpectedLevelOfSimilarity(), lvlOfSimilarity.getLevel(), ""+input.getS1()+" "+input.getS2());
         });
 
     }

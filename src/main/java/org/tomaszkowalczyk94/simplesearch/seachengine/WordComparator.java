@@ -2,35 +2,26 @@ package org.tomaszkowalczyk94.simplesearch.seachengine;
 
 class WordComparator {
 
-
-    private static final float MIN_VALUE_OF_SIMILARITY = 0.70f;
-
     /**
      * @return percentage
      */
-    LevelOfSimilarity countLevelOfSimilarity(String s1Param, String s2Param) {
+    LvlOfSimilarity countLevelOfSimilarity(String s1Param, String s2Param) {
         String s1 = s1Param.toLowerCase();
         String s2 = s2Param.toLowerCase();
 
-        if (s1.equals(s2)) {
-            return LevelOfSimilarity.EXACTLY_THE_SAME;
-        }
-
-        if (areSimilar(s1, s2)) {
-            return LevelOfSimilarity.MINOR_DIFFERENCE;
-        }
-
-        return LevelOfSimilarity.DIFFERENT;
-    }
-
-    private boolean areSimilar(String s1, String s2) {
         if (!haveSimilarLengths(s1.length(), s2.length())) {
-            return false;
+            return LvlOfSimilarity.DIFFERENT;
         }
 
-        return similarity(s1, s2) > MIN_VALUE_OF_SIMILARITY;
-    }
+        //for optimisations
+        if (s1.equals(s2)) {
+            return LvlOfSimilarity.THE_SAME;
+        }
 
+        double similarity = similarity(s1, s2);
+        return new LvlOfSimilarity(similarity);
+
+    }
     private boolean haveSimilarLengths(int length1, int length2) {
         return Math.abs(length1 - length2) < 4;
     }
