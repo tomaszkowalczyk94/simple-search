@@ -1,5 +1,6 @@
 package org.tomaszkowalczyk94.simplesearch.parser;
 
+import lombok.EqualsAndHashCode;
 import org.tomaszkowalczyk94.simplesearch.memory.Word;
 
 class WordImpl implements Word {
